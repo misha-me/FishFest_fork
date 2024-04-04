@@ -60,6 +60,7 @@ public class ObjectPoolDef : MonoBehaviour
         pooledObject.gameObject.SetActive(false);
     }
 
+
     private void Update()
     {
         if (gameObject.name == "DefaultGun")

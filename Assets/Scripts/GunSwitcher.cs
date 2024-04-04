@@ -45,6 +45,7 @@ public class GunSwitcher : MonoBehaviour
                 {
                     transform.GetChild(i).gameObject.SetActive(true);
                     transform.GetChild(i).transform.GetChild(0).gameObject.SetActive(false);
+                    transform.GetChild(i).gameObject.GetComponent<LaserGun>().progressGetGet = false;
                 }  
                 else
                     transform.GetChild(i).gameObject.SetActive(false);

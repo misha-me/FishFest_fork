@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour
 {
     private bool isinprogress = false;
+    public bool progressGetGet { get => isinprogress; set => isinprogress = value; }
     // Start is called before the first frame update
     void Start()
     {
