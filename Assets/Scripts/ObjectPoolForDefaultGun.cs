@@ -63,23 +63,11 @@ public class ObjectPoolDef : MonoBehaviour
 
     private void Update()
     {
-        if (gameObject.name == "DefaultGun")
+        if (Input.GetMouseButton(0) && (Time.time >= nextFireTime))
         {
-            if (Input.GetMouseButton(0) && (Time.time >= nextFireTime))
-            {
-                nextFireTime = Time.time + 1f / fireRate;
+            nextFireTime = Time.time + 1f / fireRate;
 
-                GetPooledObject();
-            }
-        }
-        if (gameObject.name == "MiniGun")
-        {
-            if (Input.GetMouseButton(0) && (Time.time >= nextFireTime))
-            {
-                nextFireTime = Time.time + 1f / fireRate;
-
-                GetPooledObject();
-            }
+            GetPooledObject();
         }
 
 

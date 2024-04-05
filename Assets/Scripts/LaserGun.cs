@@ -4,30 +4,23 @@ using UnityEngine;
 
 public class LaserGun : MonoBehaviour
 {
-    private bool isinprogress = false;
-    public bool progressGetGet { get => isinprogress; set => isinprogress = value; }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public LayerMask mask;
+    public int rayDistance;
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(!isinprogress)
-                StartCoroutine(AppearDisappear());
+            Ray ray = new Ray(transform.position, transform.forward);
+            Debug.DrawRay(transform.position, transform.forward * 10, Color.red);
+
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, rayDistance, mask))
+            {
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider.gameObject.CompareTag("Enemy"))
+                    hit.collider.gameObject.SetActive(false);
+            }
         }
-    }
-    IEnumerator AppearDisappear()
-    {
-        isinprogress = true;
-        transform.GetChild(0).gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        transform.GetChild(0).gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.4f);
-        isinprogress = false;
     }
 }
