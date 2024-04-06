@@ -1702,10 +1702,10 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 0.97361314, z: -0.22820452}
+      - m_Value: {x: 0, y: 0.5204397, z: -0.85389847}
         m_Name: Direction_direction
         m_Overridden: 1
-      - m_Value: {x: 34.174633, y: 1.6621304, z: 19.825699}
+      - m_Value: {x: 25.276428, y: 2.1954489, z: 21.896133}
         m_Name: Position_position
         m_Overridden: 1
     m_Vector4f:
@@ -1735,13 +1735,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904937072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24591808, y: 0.5693085, z: -0.023807358, w: 0.78412074}
+  m_LocalRotation: {x: -0.3518876, y: 0.028620016, z: -0.24198925, w: -0.90376836}
   m_LocalPosition: {x: 24.551205, y: 6.17037, z: 17.304632}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 24.379, y: 75.32, z: 15.452}
+  m_LocalEulerAnglesHint: {x: 40.534, y: 368.976, z: 33.3}
 --- !u!114 &1904937076
 MonoBehaviour:
   m_ObjectHideFlags: 2
