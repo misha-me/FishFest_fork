@@ -7,7 +7,7 @@ public class PooledBomb : MonoBehaviour
 {
     private ObjectPoolBomb poolBomb;
     private ObjectPoolBomb poolBomb2;
-
+    private float timer = 0f;
 
     public ObjectPoolBomb PoolBomb { get => poolBomb; set => poolBomb = value; }
     public ObjectPoolBomb PoolBomb2 { get => poolBomb2; set => poolBomb2 = value; }
@@ -26,29 +26,43 @@ public class PooledBomb : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemie")
+        if (collision.gameObject.tag == "Enemy")
         {
             Release();
-            
+            timer = 0f;
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(100);
+            return;
         }
-            
-        if (collision.gameObject.tag == "Enemy")
-            collision.gameObject.SetActive(false);
-    } //Время ще треба і ок або координати
+        else
+        {
+            if (collision.gameObject.tag == "Enemie")
+            {
+                Release();
+                timer = 0f;
+                return;
+            }
+
+        }
+    }
 
 
+    public void Update()
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            timer += Time.deltaTime;
+        }
 
 
-    /* IEnumerator Start()
-     {
-         Debug.Log("yyy");
-         if (gameObject.activeInHierarchy)
-         {
-             yield return new WaitForSeconds(5);
-             Debug.Log(2222);
-             Release();
-         }
-     }*/
+        if (timer >= 7 && gameObject.activeInHierarchy)
+        {
+            Release();
+            timer = 0f;
+        }
+
+    }
+
+
 
 
 

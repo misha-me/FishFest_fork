@@ -8,7 +8,7 @@ public class LaserGun : MonoBehaviour
     public int rayDistance;
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Ray ray = new Ray(transform.position, transform.forward);
             Debug.DrawRay(transform.position, transform.forward * 10, Color.red);
@@ -17,8 +17,8 @@ public class LaserGun : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, rayDistance, mask))
             {
-                Debug.Log(hit.collider.gameObject.name);
-                if (hit.collider.gameObject.CompareTag("Enemy"))
+                Debug.Log(hit.collider.gameObject.tag);
+                if (hit.collider.gameObject.tag == "Enemy")
                     hit.collider.gameObject.SetActive(false);
             }
         }
