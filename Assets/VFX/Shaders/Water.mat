@@ -52,14 +52,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Distance: 0
-    - _FoamAmount: 3
-    - _FoamCutOff: 5
-    - _FoamScale: 70
+    - _FoamAmount: 0.83
+    - _FoamCutOff: 1.6
+    - _FoamScale: 366.26
     - _FoamSpeed: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RefractionStrenght: 3
-    - _Scale: 2
+    - _Scale: 20
     - _Speed: 0.05
     - _WaterDepth: 0.91
     m_Colors:
