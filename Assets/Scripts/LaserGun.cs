@@ -6,7 +6,7 @@ public class LaserGun : MonoBehaviour
 {
     public LayerMask mask;
     public int rayDistance;
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
         {
@@ -17,9 +17,13 @@ public class LaserGun : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, rayDistance, mask))
             {
-                Debug.Log(hit.collider.gameObject.tag);
+                //Debug.Log(hit.collider.gameObject.tag);
                 if (hit.collider.gameObject.tag == "Enemy")
-                    hit.collider.gameObject.SetActive(false);
+                {
+                    hit.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
+                    //Debug.Log(hit.collider.gameObject.GetComponent<EnemyHealth>().Health); 
+                }
+                    
             }
         }
     }

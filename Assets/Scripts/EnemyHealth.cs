@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     private int health;
     public int healthMax;
 
+    public int Health { get => health; set => health = value; }
+
     private void Start()
     {
         health = healthMax; 
