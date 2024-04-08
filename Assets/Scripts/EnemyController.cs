@@ -10,7 +10,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent.ResetPath();
+        //agent.ResetPath();
     }
 
     // Update is called once per frame

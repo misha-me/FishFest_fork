@@ -12,6 +12,8 @@ public class ObjectPoolBomb : MonoBehaviour
     private Stack<PooledBomb> stack;
     private Stack<PooledBomb> stack2;
 
+    public AudioClip clip1;
+    public AudioClip clip2;
     public int numBullets = 5;
     public float fireRate = 0.01f;
     private float nextFireTime = 0f;
@@ -62,7 +64,7 @@ public class ObjectPoolBomb : MonoBehaviour
         nextInstance.gameObject.transform.position = transform.position;
         nextInstance.gameObject.transform.rotation = transform.rotation;
         nextInstance.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * 20;
-
+        GetComponent<AudioSource>().PlayOneShot(clip1);
         return nextInstance;
     }
     public PooledBomb[] GetSecondaryObject(Transform x)
@@ -97,7 +99,7 @@ public class ObjectPoolBomb : MonoBehaviour
         Transform x = pooledObject.gameObject.transform;
         stack.Push(pooledObject);
         pooledObject.gameObject.SetActive(false);
-        
+        GetComponent<AudioSource>().PlayOneShot(clip2);
         GetSecondaryObject(x);
 
     }

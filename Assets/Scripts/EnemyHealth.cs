@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     private int health;
     public int healthMax;
+    public AudioClip[] deaths;
+    private bool isDead;
 
     public int Health { get => health; set => health = value; }
 
@@ -17,12 +20,26 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         if (health <= 0)
-            EnemyDie();
+        {
+              
+            if (GetComponent<AudioSource>().isPlaying == false && !isDead)
+            {
+                isDead = true;
+                GetComponent<AudioSource>().PlayOneShot(deaths[Random.Range(0, deaths.Length)]);
+                
+                
+            }
+            StartCoroutine(zatrymka());
+            
+        }
+            
             
     }
     public void EnemyDie()
     {
+        
         gameObject.SetActive(false);
+        isDead= false;
     }
     public void TakeDamage()
     {
@@ -32,5 +49,12 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    IEnumerator zatrymka()
+    {
+        
+        yield return new WaitForSeconds(0.3f);
+        EnemyDie();
     }
 }

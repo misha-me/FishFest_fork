@@ -7,6 +7,7 @@ public class PooledBomb : MonoBehaviour
 {
     private ObjectPoolBomb poolBomb;
     private ObjectPoolBomb poolBomb2;
+    public AudioClip clip2;
     private float timer = 0f;
 
     public ObjectPoolBomb PoolBomb { get => poolBomb; set => poolBomb = value; }
@@ -16,18 +17,24 @@ public class PooledBomb : MonoBehaviour
     {
         if(this.CompareTag("Second"))
         {
+            
+            
             poolBomb2.ReturnToSecondPool(this);
+            
         }
         else
         {
+            
             poolBomb.ReturnToPool(this);
         }
         
     }
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.tag == "Enemy")
         {
+            
             Release();
             timer = 0f;
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(100);
@@ -37,6 +44,7 @@ public class PooledBomb : MonoBehaviour
         {
             if (collision.gameObject.tag == "Enemie")
             {
+                
                 Release();
                 timer = 0f;
                 return;

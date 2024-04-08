@@ -8,7 +8,9 @@ public class ObjectPoolDef : MonoBehaviour
     [SerializeField] private PooledObject objectToPool;
     // store the pooled objects in a collection
     private Stack<PooledObject> stack;
-
+    public AudioClip clip;
+    public AudioClip clip2;
+    public AudioClip clip3;
     public int bulletVelocity;
     public float fireRate = 0.01f;
     private float nextFireTime = 0f;
@@ -51,7 +53,9 @@ public class ObjectPoolDef : MonoBehaviour
         nextInstance.gameObject.transform.position = transform.position;
         nextInstance.gameObject.transform.rotation = transform.rotation;
         nextInstance.gameObject.GetComponent<Rigidbody>().velocity = transform.forward * bulletVelocity;
-
+        if (gameObject.name != "MiniGun")
+        GetComponent<AudioSource>().PlayOneShot(clip);
+        
         return nextInstance;
     }
     public void ReturnToPool(PooledObject pooledObject)
@@ -63,12 +67,33 @@ public class ObjectPoolDef : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && (Time.time >= nextFireTime))
+        if (Input.GetMouseButton(0) && (Time.time >= nextFireTime) && gameObject.name != "MiniGun")
+        {
+            
+            nextFireTime = Time.time + 1f / fireRate;
+            GetPooledObject();
+            
+        }
+        else if (Input.GetMouseButton(0) && (Time.time >= nextFireTime))
         {
             nextFireTime = Time.time + 1f / fireRate;
-
             GetPooledObject();
+            if (GetComponent<AudioSource>().isPlaying == true)
+            {
+                
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(clip2);
+            }        
         }
+        else if (!Input.GetMouseButton(0) && gameObject.name == "MiniGun")
+        {
+            GetComponent<AudioSource>().Stop();
+            
+        }
+        
+
 
 
     }
