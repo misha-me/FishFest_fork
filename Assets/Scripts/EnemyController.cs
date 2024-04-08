@@ -10,12 +10,13 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent.ResetPath();
     }
 
     // Update is called once per frame
     void Update()
     {
+        agent.enabled = true;
         agent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
     }
 }

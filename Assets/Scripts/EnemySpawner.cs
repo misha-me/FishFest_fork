@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private Transform parent;
+
     [SerializeField] private uint initPoolSize;
     [SerializeField] private PooledEnemy objectToPool;
     [SerializeField] private List<Transform> spawners;
@@ -28,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         PooledEnemy instance = null;
         for (int i = 0; i < initPoolSize; i++)
         {
-            instance = Instantiate(objectToPool);
+            instance = Instantiate(objectToPool, parent);
             instance.EnemyPool = this;
             instance.gameObject.SetActive(false);
             stack.Push(instance);
@@ -51,6 +53,8 @@ public class EnemySpawner : MonoBehaviour
         Transform randomTransform;
         PooledEnemy nextInstance = stack.Pop();
         randomTransform = spawners[Random.Range(0,10)];
+        nextInstance.gameObject.SetActive(true);
+        nextInstance.gameObject.SetActive(false);
         nextInstance.gameObject.SetActive(true);
         nextInstance.gameObject.transform.position = randomTransform.position;
         nextInstance.gameObject.transform.rotation = transform.rotation;
